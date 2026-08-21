@@ -12,11 +12,16 @@ permissions:
 
 jobs:
   build-and-deploy:
-    # Dit is belangrijk voor GitHub Pages om de juiste omgeving te laden
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    
+    # OPLOSSING: Vertel de server dat alle commando's in de 'portfolio' map moeten draaien
+    defaults:
+      run:
+        working-directory: ./portfolio
+        
     steps:
       - name: Haal de code op
         uses: actions/checkout@v4
@@ -24,10 +29,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "24" # Opgelost: We gebruiken nu expliciet de nieuwste Node versie!
+          node-version: "24" 
 
       - name: Installeer dependencies
-        # Opgelost: We vertellen de server dat hij niet mag crashen op die oxlint fout!
         run: npm install --legacy-peer-deps 
 
       - name: Build het Vue project
@@ -36,7 +40,8 @@ jobs:
       - name: Upload de gebouwde bestanden
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist 
+          # OPLOSSING: Vite zet de gebouwde bestanden nu in portfolio/dist
+          path: portfolio/dist 
 
       - name: Deploy naar GitHub Pages
         id: deployment
