@@ -1,0 +1,40 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Zorgt ervoor dat dit script afspeelt elke keer als jij naar de 'main' branch pusht
+  push:
+    branches:
+      - main 
+
+# Geeft GitHub de juiste rechten om je website te mogen publiceren
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Haal de code op
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22" # De nieuwste versie die je zojuist waarschijnlijk hebt geïnstalleerd
+
+      - name: Installeer dependencies
+        run: npm install
+
+      - name: Build het Vue project
+        run: npm run build
+
+      - name: Upload de gebouwde bestanden
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Vite stopt de gebouwde website standaard in een mapje genaamd 'dist'
+          path: dist 
+
+      - name: Deploy naar GitHub Pages
+        uses: actions/deploy-pages@v4
