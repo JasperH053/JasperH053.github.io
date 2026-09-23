@@ -37,6 +37,10 @@ jobs:
       - name: Build het Vue project
         run: npm run build
 
+      # GitHub Pages heeft geen SPA-fallback: met een 404.html laadt /about ook bij herladen de app
+      - name: Maak 404.html fallback voor de router
+        run: cp dist/index.html dist/404.html
+
       - name: Upload de gebouwde bestanden
         uses: actions/upload-pages-artifact@v3
         with:

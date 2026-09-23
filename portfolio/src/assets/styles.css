@@ -1,0 +1,38 @@
+/* Global tokens and base styles. All colors live here; components use these variables. */
+:root {
+  /* Size of one art pixel in CSS pixels. Keep in sync with PIXEL in src/pixel/constants.ts. */
+  --pixel: 4px;
+
+  --sky: #9fd8ff;
+  --cloud: #ffffff;
+  --cloud-shade: #d3dce6;
+  --sun: #ffd84a;
+  --mountain-far: #8c9fbd;
+  --mountain: #5e7394;
+  --hair: #7a4a24;
+  --skin: #f1c29b;
+  --shirt: #c8453c;
+
+  --backdrop: #6d91b8;
+  --backdrop-opacity: 0.6;
+  --text: #1d2540;
+  --accent: #2d6fb3;
+  --nav-active: #c1cb00;
+  --panel: #ffffff;
+  --panel-border: var(--text);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--backdrop);
+  color: var(--text);
+  font-family: 'Pixelify Sans', monospace;
+  font-size: 20px;
+  line-height: 1.5;
+}
