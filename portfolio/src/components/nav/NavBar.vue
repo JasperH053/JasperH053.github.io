@@ -44,7 +44,7 @@ import { RouterLink } from 'vue-router'
   height: calc(var(--img-h, var(--h)) * var(--pixel));
   background: var(--img) center / 100% 100% no-repeat;
   image-rendering: pixelated;
-  transition: all 300ms;
+  transition: all 100ms;
 }
 
 .cloud:focus-visible {

@@ -61,11 +61,17 @@ defineProps<{
   font-size: 22px;
   line-height: 1;
   text-decoration: none;
+  transition: all 100ms;
 }
 
 .next:focus-visible {
   outline: var(--p) solid var(--text);
   outline-offset: var(--p);
+}
+
+.next:hover {
+  width: calc(var(--p) * 45);
+  height: calc(var(--p) * 18);
 }
 
 .panel :slotted(h1) {
